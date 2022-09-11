@@ -158,6 +158,13 @@
      transform: scale(1.2);
  }
 
+ .progressBar {
+     display: flex;
+     justify-content: center;
+     gap: 5px;
+     flex-wrap: wrap;
+     align-items: baseline;
+ }
 
  .notification {
      position: relative;

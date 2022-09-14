@@ -1,15 +1,13 @@
-import React, {useState} from 'react'
+import React from 'react'
 import Header from './Header'
 import Timer from './Timer'
 
-
 function App(){
-
 
   return(
     <div>
-      <Header/>
-      <Timer/>
+        <Header/>
+        <Timer/>
     </div>
   )
 }

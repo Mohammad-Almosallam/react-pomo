@@ -1,74 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import ProgressBar from "@ramonak/react-progress-bar";
 
+
 function Progressbar(props){
+    // console.log(props.currCompleted,props.maxCompleted);
     return(
-        <div className="progressBar">
+        <div className="progressBar"> 
             <ProgressBar
-                completed={props.elapsedTime}
+                completed={props.currCompleted}
                 height={4}
-                width={"120px"}
+                maxCompleted={props.maxCompleted}
+                className="wrapper"
                 borderRadius={"0"}
-                bgColor={"black"}
-                isLabelVisible={false}
-                animateOnRender={true}
-            />
-            <ProgressBar
-                completed={0}
-                height={4}
-                width={"40px"}
-                borderRadius={"0"}
-                bgColor={"black"}
-                isLabelVisible={false}
-                animateOnRender={true}
-            />
-            <ProgressBar
-                completed={0}
-                height={4}
-                width={"120px"}
-                borderRadius={"0"}
-                bgColor={"black"}
-                isLabelVisible={false}
-                animateOnRender={true}
-            />
-            <ProgressBar
-                completed={0}
-                height={4}
-                width={"40px"}
-                borderRadius={"0"}
-                bgColor={"black"}
-                isLabelVisible={false}
-                animateOnRender={true}
-            />
-            <ProgressBar
-                completed={0}
-                height={4}
-                width={"120px"}
-                borderRadius={"0"}
-                bgColor={"black"}
-                isLabelVisible={false}
-                animateOnRender={true}
-            />
-            <ProgressBar
-                completed={0}
-                height={4}
-                width={"40px"}
-                borderRadius={"0"}
-                bgColor={"black"}
-                isLabelVisible={false}
-                animateOnRender={true}
-            />
-            <ProgressBar
-                completed={0}
-                height={4}
-                width={"120px"}
-                borderRadius={"0"}
-                bgColor={"black"}
+                bgColor="#171717"
                 isLabelVisible={false}
                 animateOnRender={true}
             />
             <ion-icon name="flag-outline"></ion-icon>
-
         </div>
     )
 }

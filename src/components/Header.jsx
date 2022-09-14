@@ -4,10 +4,9 @@ function Header(props) {
   const [isMenuActive, setMenuActive] = useState(false)
   const [darkMode,setDark] = useState("darkmode")
 
+  
   function showSideMenu(){
-    setMenuActive(prevValue => {
-      return prevValue ? false : true
-    })
+    setMenuActive(prevValue => (!prevValue))
   }
 
   useEffect(()=>{

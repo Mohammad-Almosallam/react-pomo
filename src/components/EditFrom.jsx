@@ -14,7 +14,7 @@ export default function EidtInput(props) {
       <form>
         <InputNumber min={1} placeholder="Time" onChange={(e)=>{setNumTime(e)}} />
         <InputNumber min={1} placeholder="Break" onChange={(e)=>{setNumBreak(e)}} />
-        <Button onClick={()=>{props.onTimeChange(numTime,numBreak)}} >Submit</Button>
+        <Button type='default' onClick={()=>{props.onTimeChange(numTime,numBreak)}} >Submit</Button>
         
       </form>
     </div>

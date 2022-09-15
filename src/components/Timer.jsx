@@ -4,8 +4,14 @@ import audio from "../audio/digital-alarm.m4a"
 import ReactAudioPlayer from 'react-audio-player';
 import EidtInput from './EditFrom';
 
+/**
+ * The Timer function is a React component that renders a timer, a progress bar, and a modal that
+ * allows the user to change the timer's duration
+ * @returns A functional component that returns a div with a progress bar, a timer, and an edit input.
+ */
 
 function Timer(){
+
     const [pomoTime , setPomoTime] = useState(0.1)
     const [breakTime , setBreakTime] = useState(0.2)
     const [time, setTime] = useState(pomoTime * 60)
@@ -17,13 +23,19 @@ function Timer(){
     const formatedMins = minutes < 10 ? `0${minutes}` : minutes
     const formatedSecs = seconds < 10 ? `0${seconds}` : seconds
 
+
+
+/* A hook that is called every time the time or isPaused state changes. It is used to update the timer
+and format the timer. */
     useEffect(()=>{
         const intervalId = setInterval(() => {  
             clearInterval(intervalId)
-            formatTimer()
             updateTimer()
+            formatTimer()
         }, 1000);
     },[time,isPaused])
+
+
 
     function formatTimer(){
         if(isBreak){
@@ -38,6 +50,8 @@ function Timer(){
             }
         }
     }
+
+
 
     function updateTimer(){
         if(time < 0){
@@ -56,7 +70,9 @@ function Timer(){
         }
     }
 
-    function resetToPreferedTime(v1,v2){
+
+    // Takes values entered by user for Work time and Break Time. resets timer to the user preferred time
+    function resetToPreferredTime(v1,v2){
         if(isBreak){
             setTime(v1 * 60)
             setProgress(0)
@@ -67,12 +83,22 @@ function Timer(){
             setProgress(0)
             setPomoTime(v1)
             setBreakTime(v2)
-
         }
     }
 
+
+  /**
+   * It changes the title of the page to the current time and whether it is a break or work time.
+   */
+    function handleTitle(){
+        document.title = `${formatedMins}:${formatedSecs} | ${!isBreak ? "break" : "work"}`
+    }
+
+
+
     return (
         <div>
+            {handleTitle()}
             <Progressbar 
                 maxCompleted={isBreak ? pomoTime * 60 + 1 : breakTime * 60}
                 maxBreakCompleted={breakTime * 60}
@@ -96,7 +122,7 @@ function Timer(){
                     <ion-icon class="icons" id="pause" onClick={()=>{setPaused(true)}} name="pause-outline"></ion-icon>
                     <ion-icon class="icons" id="edit"  onClick={()=>{setPaused(true)}} name="timer-outline"></ion-icon>
                 </div>
-            <EidtInput onTimeChange={resetToPreferedTime}/>
+            <EidtInput onTimeChange={resetToPreferredTime}/>
             </div>
         </div>
     )

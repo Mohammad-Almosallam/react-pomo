@@ -20,6 +20,7 @@ function Timer(){
     const [seconds , setSeconds] = useState(time % 60)
     const [isPaused,setPaused] = useState(true)
     const [isBreak,setBreak] = useState(true)
+    const [isEdit,setEdit] = useState(false)
     const formatedMins = minutes < 10 ? `0${minutes}` : minutes
     const formatedSecs = seconds < 10 ? `0${seconds}` : seconds
 
@@ -94,7 +95,17 @@ and format the timer. */
         document.title = `${formatedMins}:${formatedSecs} | ${!isBreak ? "break" : "work"}`
     }
 
-
+    function handleInput(){
+        setEdit((prevValue)=>(!prevValue))
+        setPaused(isEdit ? false : true)
+    }
+    
+    function handleSubmit(e,numTime, numBreak){
+        e.preventDefault()
+        resetToPreferredTime(numTime,numBreak)
+        setPaused(false)
+        setEdit(false)
+    }
 
     return (
         <div>
@@ -118,11 +129,14 @@ and format the timer. */
                     <h1>{`${formatedMins}:${formatedSecs}`}</h1>
                 </div>
                 <div className="actions">
-                    <ion-icon class="icons" id="play"  onClick={()=>{setPaused(false)}} name="play-sharp"></ion-icon>
+                    <ion-icon class="icons" id="play"  onClick={()=>{
+                        setEdit(false)
+                        setPaused(false)
+                    }} name="play-sharp"></ion-icon>
                     <ion-icon class="icons" id="pause" onClick={()=>{setPaused(true)}} name="pause-outline"></ion-icon>
-                    <ion-icon class="icons" id="edit"  onClick={()=>{setPaused(true)}} name="timer-outline"></ion-icon>
+                    <ion-icon class="icons" id="edit"  onClick={()=>{handleInput()}} name="timer-outline"></ion-icon>
                 </div>
-            <EidtInput onTimeChange={resetToPreferredTime}/>
+            <EidtInput onTimeChange={resetToPreferredTime} onSubmit={handleSubmit} toggle={isEdit}/>
             </div>
         </div>
     )

@@ -1,13 +1,17 @@
 import React from 'react'
 import Header from './Header'
 import Timer from './Timer'
+import Quotes from './Quotes'
 
 function App(){
 
   return(
-    <div>
+    <div >
         <Header/>
-        <Timer/>
+        <div className='space'>
+          <Timer/>
+          <Quotes/>
+        </div>
     </div>
   )
 }

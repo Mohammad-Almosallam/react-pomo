@@ -23,7 +23,7 @@ function Timer(){
     const [isEdit,setEdit] = useState(false)
     const formatedMins = minutes < 10 ? `0${minutes}` : minutes
     const formatedSecs = seconds < 10 ? `0${seconds}` : seconds
-
+    
 
 
 /* A hook that is called every time the time or isPaused state changes. It is used to update the timer
@@ -52,8 +52,6 @@ and format the timer. */
         }
     }
 
-
-
     function updateTimer(){
         if(time < 0){
             if(isBreak){
@@ -65,12 +63,12 @@ and format the timer. */
                 setProgress(0)
                 setTime(pomoTime * 60)
             }
-        }else if(!isPaused){
+        }
+        else if(!isPaused){
             setProgress(countProgress + 1)
             setTime(time - 1)
         }
     }
-
 
     // Takes values entered by user for Work time and Break Time. resets timer to the user preferred time
     function resetToPreferredTime(v1,v2){
@@ -86,15 +84,7 @@ and format the timer. */
             setBreakTime(v2)
         }
     }
-
-
-  /**
-   * It changes the title of the page to the current time and whether it is a break or work time.
-   */
-    function handleTitle(){
-        document.title = `${formatedMins}:${formatedSecs} | ${!isBreak ? "break" : "work"}`
-    }
-
+    
     function handleInput(){
         setEdit((prevValue)=>(!prevValue))
         setPaused(isEdit ? false : true)
@@ -107,8 +97,33 @@ and format the timer. */
         setEdit(false)
     }
 
+  /**
+   * It changes the title of the page to the current time and whether it is a break or work time.
+   */
+    function handleTitle(){
+        document.title = `${formatedMins}:${formatedSecs} | ${!isBreak ? "break" : "work"}`
+    }
+
+
+    function handleSkip(){
+        // console.log("im in handleSkip",time)
+        // const intervalId = setInterval(() => {  
+        //     clearInterval(intervalId)
+        //     if(isBreak){
+        //         setBreak(false)
+        //         setProgress(0)
+        //         setTime(breakTime * 60)
+        //     }else{
+        //         setBreak(true)
+        //         setProgress(0)
+        //         setTime(pomoTime * 60)
+        //     }
+        // }, 3000);
+    }
+    
+
     return (
-        <div>
+        <div className='main'>
             {handleTitle()}
             <Progressbar 
                 maxCompleted={isBreak ? pomoTime * 60 + 1 : breakTime * 60}
@@ -125,7 +140,7 @@ and format the timer. */
                     <h5 className={isPaused ? "paused paused-active" : "paused"}>Paused!</h5>
                     <h5 className={!isBreak ? "break break-active" : "break"}>Break!</h5>
                 </div>
-                <div className='timer'>
+                <div>
                     <h1>{`${formatedMins}:${formatedSecs}`}</h1>
                 </div>
                 <div className="actions">
@@ -134,10 +149,12 @@ and format the timer. */
                         setPaused(false)
                     }} name="play-sharp"></ion-icon>
                     <ion-icon class="icons" id="pause" onClick={()=>{setPaused(true)}} name="pause-outline"></ion-icon>
+                    <ion-icon class="icons" id="skip" onClick={()=>{handleSkip()}} name="play-skip-forward"></ion-icon>
                     <ion-icon class="icons" id="edit"  onClick={()=>{handleInput()}} name="timer-outline"></ion-icon>
                 </div>
-            <EidtInput onTimeChange={resetToPreferredTime} onSubmit={handleSubmit} toggle={isEdit}/>
+            <EidtInput onSubmit={handleSubmit} toggle={isEdit}/>
             </div>
+
         </div>
     )
 }

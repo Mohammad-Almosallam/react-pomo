@@ -298,9 +298,13 @@
      .quote {
          text-align: center;
          margin-top: 2rem;
-         font-size: 14px;
+         font-size: 12px;
          overflow: hidden;
-         padding: 0 20%;
+         padding: 0 15%;
+     }
+
+     h1 {
+         font-size: 5rem;
      }
 
      ul {

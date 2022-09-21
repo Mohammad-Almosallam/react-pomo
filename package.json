@@ -14,12 +14,9 @@
     "install": "^0.13.0",
     "npm": "^8.19.1",
     "react": "^18.2.0",
-    "react-audio-player": "^0.17.0",
     "react-dom": "^18.2.0",
-    "react-player": "^2.10.1",
     "react-scripts": "5.0.1",
-    "react-spring": "^9.5.4",
-    "react-timer-hook": "^3.0.5",
+    "use-sound": "^4.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

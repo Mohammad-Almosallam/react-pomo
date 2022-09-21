@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react'
 import Progressbar from './Progressbar'
-import audio from "../audio/digital-alarm.m4a"
-import ReactAudioPlayer from 'react-audio-player';
+import audio from "../audio/timesUp.mp3"
 import EidtInput from './EditFrom';
+import useSound from 'use-sound';
+
 
 /**
  * The Timer function is a React component that renders a timer, a progress bar, and a modal that
@@ -12,8 +13,8 @@ import EidtInput from './EditFrom';
 
 function Timer(){
 
-    const [pomoTime , setPomoTime] = useState(25)
-    const [breakTime , setBreakTime] = useState(5)
+    const [pomoTime , setPomoTime] = useState(0.1)
+    const [breakTime , setBreakTime] = useState(.2)
     const [time, setTime] = useState(pomoTime * 60)
     const [countProgress, setProgress] = useState(0)
     const [minutes , setMinutes] = useState(Math.floor(time/60))
@@ -23,7 +24,9 @@ function Timer(){
     const [isEdit,setEdit] = useState(false)
     const formatedMins = minutes < 10 ? `0${minutes}` : minutes
     const formatedSecs = seconds < 10 ? `0${seconds}` : seconds
-    
+    const [ timesUp ] = useSound(audio, {
+        volume: 1,
+      })
 
 
 /* A hook that is called every time the time or isPaused state changes. It is used to update the timer
@@ -54,6 +57,7 @@ and format the timer. */
 
     function updateTimer(){
         if(time < 0){
+            timesUp()
             if(isBreak){
                 setBreak(false)
                 setProgress(0)
@@ -130,10 +134,10 @@ and format the timer. */
                 maxBreakCompleted={breakTime * 60}
                 currCompleted={countProgress}
             />
-            {time < 0 &&  <ReactAudioPlayer
+            {/* {time < 0 &&  <ReactAudioPlayer
                 src={audio}
                 autoPlay={true}
-            />}
+            />} */}
 
             <div className="hero">
                 <div className="notifications">

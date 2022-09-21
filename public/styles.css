@@ -2,7 +2,7 @@
 
  :root {
      --dark: #000000;
-     --light: #fff;
+     --light: #F1F0F0;
      --background: var(--light);
      --foreground: var(--dark);
      --background-light: #FCFCFC;
@@ -23,19 +23,23 @@
  body {
      background-color: var(--background);
      color: var(--foreground);
-     background-image: -webkit-linear-gradient(-65deg, var(--background) 50%, var(--background-light) 50%);
-     height: 100%;
-     margin: 0%;
+     /* background-image: -webkit-linear-gradient(-65deg, var(--background) 50%, var(--background-light) 50%); */
      font-family: 'Poppins', sans-serif;
      font-weight: 100;
      font-size: 22px;
+     margin: 0;
+     padding: 0;
+     overflow-y: hidden;
+     overflow-x: hidden;
+     scroll-behavior: smooth;
  }
-
 
  a {
      text-decoration: none;
      color: var(--foreground);
      position: relative;
+     z-index: 1;
+     cursor: pointer;
  }
 
 
@@ -66,7 +70,7 @@
      display: flex;
      flex-direction: column;
      justify-content: space-around;
-     height: 80vh;
+     height: 100vh;
  }
 
  /* --- Dark theme button animation --- */
@@ -172,15 +176,9 @@
  }
 
  .wrapper {
-     width: 50%;
-     background-color: #5fffdf;
+     width: 50vw;
  }
 
- @media (min-width:1111px) {
-     .wrapper {
-         width: 555px;
-     }
- }
 
  /* ----- PrgoressBar Styles ---END--- */
 
@@ -232,7 +230,7 @@
      border: 2px solid transparent;
      outline: none;
      border-radius: 5px;
-     background-color: var(--background-light);
+     background-color: transparent;
      box-shadow: 0px 10px 15px -3px var(--box-shadow);
      color: var(--foreground);
      transition: .3s ease;
@@ -254,7 +252,7 @@
  button:hover {
      outline: none;
      border-color: var(--foreground);
-     background-color: var(--background);
+     background-color: transparent;
      box-shadow: 0 0 0 4px var(--box-shadow);
  }
 
@@ -272,15 +270,89 @@
 
  .main {
      position: relative;
+     width: max-content;
+     margin: 0 auto;
  }
 
  .quote {
      text-align: center;
-     margin-top: 2rem;
+     margin-bottom: 4rem;
      font-size: 14px;
-     overflow: hidden;
      padding: 0 25%;
+     z-index: 1;
  }
+
+ .parent {
+     position: relative;
+ }
+
+ .clockSpline {
+     z-index: 0;
+     display: block;
+     right: 0;
+     top: 0;
+     position: absolute;
+ }
+
+ .about-container {
+     margin: 0 30%;
+     font-size: 0.8rem;
+     font-weight: 200;
+     animation: paragraph 1s ease-in-out;
+ }
+
+ .paragraph {
+     margin: 2rem 0 0 0;
+ }
+
+
+ .paragraph p {
+     border-left: var(--foreground) 1px solid;
+     padding-left: 1rem;
+     text-align: justify;
+ }
+
+ /* contact page */
+ .info {
+     text-align: center;
+ }
+
+ .info input {
+     background-color: var(--background);
+     color: var(--foreground);
+     border: 0px;
+     cursor: unset;
+     width: 400px;
+     height: 1.5rem;
+     box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+ }
+
+
+ @media (max-width: 1524px) {
+     .clockSpline {
+         transform: scale(0.8) translateX(200px);
+         transform-origin: top;
+     }
+
+     .wrapper {
+         max-width: 50vw;
+     }
+ }
+
+ @media (max-width: 1100px) {
+     .clockSpline {
+         transform: scale(0.8) translateX(500px);
+         transform-origin: top;
+     }
+ }
+
+ @media (max-width: 650px) {
+     .clockSpline {
+         transform: scale(0.7) translateX(900px) translateY(100px);
+     }
+ }
+
 
 
  @media (min-width:600px) {
@@ -346,38 +418,4 @@
      .nav {
          padding: 1rem;
      }
- }
-
- .about-container {
-     margin: 0 30%;
-     font-size: 0.8rem;
-     font-weight: 200;
-     animation: paragraph 1s ease-in-out;
- }
-
- .paragraph {
-     margin: 2rem 0 0 0;
- }
-
-
- .paragraph p {
-     border-left: var(--foreground) 1px solid;
-     padding-left: 1rem;
-     text-align: justify;
- }
-
- /* contact page */
- .info {
-     text-align: center;
- }
-
- .info input {
-     background-color: var(--background);
-     color: var(--foreground);
-     border: 0px;
-     cursor: unset;
-     width: 400px;
-     height: 1.5rem;
-     box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
-
  }

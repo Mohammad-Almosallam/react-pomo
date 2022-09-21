@@ -12,8 +12,8 @@ import EidtInput from './EditFrom';
 
 function Timer(){
 
-    const [pomoTime , setPomoTime] = useState(0.1)
-    const [breakTime , setBreakTime] = useState(0.2)
+    const [pomoTime , setPomoTime] = useState(25)
+    const [breakTime , setBreakTime] = useState(5)
     const [time, setTime] = useState(pomoTime * 60)
     const [countProgress, setProgress] = useState(0)
     const [minutes , setMinutes] = useState(Math.floor(time/60))

@@ -2,7 +2,7 @@ import React, {useState,useEffect} from 'react'
 
 function Header(props) {
   const [isMenuActive, setMenuActive] = useState(false)
-  const [darkMode,setDark] = useState("darkmode")
+  const [darkMode,setDark] = useState("")
   const [showHide, setShowHide] = useState("HIDE")
   
   function showSideMenu(){

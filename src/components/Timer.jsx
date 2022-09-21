@@ -110,19 +110,21 @@ and format the timer. */
 
 
     function handleSkip(){
-        // console.log("im in handleSkip",time)
-        // const intervalId = setInterval(() => {  
-        //     clearInterval(intervalId)
-        //     if(isBreak){
-        //         setBreak(false)
-        //         setProgress(0)
-        //         setTime(breakTime * 60)
-        //     }else{
-        //         setBreak(true)
-        //         setProgress(0)
-        //         setTime(pomoTime * 60)
-        //     }
-        // }, 3000);
+        setPaused(true)
+        const intervalId = setInterval(() => {  
+            clearInterval(intervalId)
+            if(isBreak){
+                setBreak(false)
+                setProgress(0)
+                setTime(breakTime * 60)
+                setPaused(false)
+            }else{
+                setBreak(true)
+                setProgress(0)
+                setTime(pomoTime * 60)
+                setPaused(false)
+            }
+        }, 700);
     }
     
 
@@ -134,11 +136,6 @@ and format the timer. */
                 maxBreakCompleted={breakTime * 60}
                 currCompleted={countProgress}
             />
-            {/* {time < 0 &&  <ReactAudioPlayer
-                src={audio}
-                autoPlay={true}
-            />} */}
-
             <div className="hero">
                 <div className="notifications">
                     <h5 className={isPaused ? "paused paused-active" : "paused"}>Paused!</h5>
@@ -153,7 +150,7 @@ and format the timer. */
                         setPaused(false)
                     }} name="play-sharp"></ion-icon>
                     <ion-icon class="icons" id="pause" onClick={()=>{setPaused(true)}} name="pause-outline"></ion-icon>
-                    <ion-icon class="icons" id="skip" onClick={()=>{handleSkip()}} name="play-skip-forward"></ion-icon>
+                    <ion-icon class="icons" id="skip"  onClick={()=>{handleSkip()}} name="play-skip-forward"></ion-icon>
                     <ion-icon class="icons" id="edit"  onClick={()=>{handleInput()}} name="timer-outline"></ion-icon>
                 </div>
             <EidtInput onSubmit={handleSubmit} toggle={isEdit}/>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from './Header'
 import Timer from './Timer'
 import Quotes from './Quotes'
@@ -6,8 +6,12 @@ import Spline from '@splinetool/react-spline';
 
 
 function App(){
-  const [isWhite, setWhite] = useState(false)
+  const [isWhite, setWhite] = useState(true)
   const [removeBtn, setRemoveBtn] = useState(true)
+
+  useEffect(()=>{
+    document.body.classList.add("darkmode")
+  },[])
   
   function renderOnTheme(value){
     setWhite(value => !value)

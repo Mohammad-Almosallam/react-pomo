@@ -13,8 +13,8 @@ import useSound from 'use-sound';
 
 function Timer(){
 
-    const [pomoTime , setPomoTime] = useState(0.1)
-    const [breakTime , setBreakTime] = useState(.2)
+    const [pomoTime , setPomoTime] = useState(25)
+    const [breakTime , setBreakTime] = useState(5)
     const [time, setTime] = useState(pomoTime * 60)
     const [countProgress, setProgress] = useState(0)
     const [minutes , setMinutes] = useState(Math.floor(time/60))
@@ -32,11 +32,13 @@ function Timer(){
 /* A hook that is called every time the time or isPaused state changes. It is used to update the timer
 and format the timer. */
     useEffect(()=>{
-        const intervalId = setInterval(() => {  
-            clearInterval(intervalId)
-            updateTimer()
-            formatTimer()
-        }, 1000);
+        if(!isPaused){
+            const intervalId = setInterval(() => {  
+                clearInterval(intervalId)
+                updateTimer()
+                formatTimer()
+            }, 1000);
+        }
     },[time,isPaused])
 
 
@@ -117,14 +119,12 @@ and format the timer. */
                 setBreak(false)
                 setProgress(0)
                 setTime(breakTime * 60)
-                setPaused(false)
             }else{
                 setBreak(true)
                 setProgress(0)
                 setTime(pomoTime * 60)
-                setPaused(false)
             }
-        }, 700);
+        }, 800);
     }
     
 

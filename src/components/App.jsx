@@ -3,7 +3,7 @@ import Header from './Header'
 import Timer from './Timer'
 import Quotes from './Quotes'
 import Spline from '@splinetool/react-spline';
-
+import Alert from './Alert';
 
 function App(){
   const [isWhite, setWhite] = useState(true)
@@ -23,7 +23,7 @@ function App(){
   return(
     <div className='parent'>
         <Header splineBtn={handleSpline} renderSplineOnTheme={renderOnTheme}/>
-        
+        <Alert/>
         {isWhite && removeBtn && <Spline className='clockSpline' scene="https://prod.spline.design/cs-JIFZt2SCfkx-W/scene.splinecode" />}
 
         <div className='space'>

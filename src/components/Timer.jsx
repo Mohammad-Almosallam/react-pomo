@@ -22,6 +22,7 @@ function Timer(){
     const [isPaused,setPaused] = useState(true)
     const [isBreak,setBreak] = useState(true)
     const [isEdit,setEdit] = useState(false)
+    const [skipText, setSkipText] = useState('Paused!')
     const formatedMins = minutes < 10 ? `0${minutes}` : minutes
     const formatedSecs = seconds < 10 ? `0${seconds}` : seconds
     const [ timesUp ] = useSound(audio, {
@@ -32,15 +33,13 @@ function Timer(){
 /* A hook that is called every time the time or isPaused state changes. It is used to update the timer
 and format the timer. */
     useEffect(()=>{
-        if(!isPaused){
-            const intervalId = setInterval(() => {  
-                clearInterval(intervalId)
-                updateTimer()
-                formatTimer()
-            }, 1000);
-        }
+        const intervalId = setInterval(() => {  
+            clearInterval(intervalId)
+            updateTimer()
+            formatTimer()
+        }, 1000);
+    
     },[time,isPaused])
-
 
 
     function formatTimer(){
@@ -73,6 +72,7 @@ and format the timer. */
         else if(!isPaused){
             setProgress(countProgress + 1)
             setTime(time - 1)
+
         }
     }
 
@@ -92,6 +92,7 @@ and format the timer. */
     }
     
     function handleInput(){
+        setSkipText('Paused!')
         setEdit((prevValue)=>(!prevValue))
         setPaused(isEdit ? false : true)
     }
@@ -112,6 +113,7 @@ and format the timer. */
 
 
     function handleSkip(){
+        setSkipText('Skipped!') 
         setPaused(true)
         const intervalId = setInterval(() => {  
             clearInterval(intervalId)
@@ -119,12 +121,14 @@ and format the timer. */
                 setBreak(false)
                 setProgress(0)
                 setTime(breakTime * 60)
+                setPaused(false)
             }else{
                 setBreak(true)
                 setProgress(0)
                 setTime(pomoTime * 60)
+                setPaused(false)
             }
-        }, 800);
+        }, 1000);
     }
     
 
@@ -138,7 +142,7 @@ and format the timer. */
             />
             <div className="hero">
                 <div className="notifications">
-                    <h5 className={isPaused ? "paused paused-active" : "paused"}>Paused!</h5>
+                    <h5 className={isPaused ? "paused paused-active" : "paused"}>{skipText}</h5>
                     <h5 className={!isBreak ? "break break-active" : "break"}>Break!</h5>
                 </div>
                 <div>
@@ -149,7 +153,10 @@ and format the timer. */
                         setEdit(false)
                         setPaused(false)
                     }} name="play-sharp"></ion-icon>
-                    <ion-icon class="icons" id="pause" onClick={()=>{setPaused(true)}} name="pause-outline"></ion-icon>
+                    <ion-icon class="icons" id="pause" onClick={()=>{
+                        setSkipText('Paused!')   
+                        setPaused(true)}
+                        } name="pause-outline"></ion-icon>
                     <ion-icon class="icons" id="skip"  onClick={()=>{handleSkip()}} name="play-skip-forward"></ion-icon>
                     <ion-icon class="icons" id="edit"  onClick={()=>{handleInput()}} name="timer-outline"></ion-icon>
                 </div>

@@ -350,6 +350,10 @@
      right: 1rem;
  }
 
+ .alertNotif::-webkit-scrollbar {
+     display: none;
+ }
+
  .alertNotif-closed {
      display: none;
  }
@@ -382,6 +386,7 @@
      .clockSpline {
          transform: scale(0.7) translateX(900px) translateY(100px);
      }
+
  }
 
 
@@ -392,11 +397,16 @@
      .close-menu {
          display: none;
      }
-
-
  }
 
  @media (max-width:600px) {
+
+     .alertNotif {
+         margin-left: auto;
+         margin-right: auto;
+         left: 0;
+         right: 0;
+     }
 
      .quote {
          text-align: center;

@@ -29,8 +29,16 @@
      font-size: 22px;
      margin: 0;
      padding: 0;
-     overflow: scroll;
+ }
+
+ body {
+     overflow-y: scroll;
+     overflow-x: hidden;
      scroll-behavior: smooth;
+ }
+
+ body::-webkit-scrollbar {
+     display: none;
  }
 
  a {
@@ -213,10 +221,12 @@
      top: 195px;
      z-index: 1;
      opacity: 0%;
+     visibility: hidden;
      transition: all 0.5s ease-in-out;
  }
 
  .editInput-active {
+     visibility: visible;
      top: 215px;
      opacity: 100%;
  }

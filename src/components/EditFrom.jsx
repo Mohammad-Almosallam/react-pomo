@@ -3,11 +3,11 @@ import React, { useState } from 'react'
 
 
 export default function EidtInput(props) {
-  const [numTime, setNumTime]= useState(1)
-  const [numBreak, setNumBreak]= useState(1)
+  const [numTime, setNumTime]= useState()
+  const [numBreak, setNumBreak]= useState()
 
   function handleZeroValue(value){
-      if(value <= 0 && value != ''){
+      if(value <= 0 && value !== ''){
         alert("Value should be greater than 0")
         setNumBreak(1)
         setNumTime(1)

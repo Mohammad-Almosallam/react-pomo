@@ -29,8 +29,7 @@
      font-size: 22px;
      margin: 0;
      padding: 0;
-     overflow-y: hidden;
-     overflow-x: hidden;
+     overflow: scroll;
      scroll-behavior: smooth;
  }
 
@@ -410,7 +409,6 @@
 
      .quote {
          text-align: center;
-         margin-top: 2rem;
          font-size: 12px;
          overflow: hidden;
          padding: 0 15%;
